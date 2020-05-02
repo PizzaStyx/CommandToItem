@@ -35,6 +35,26 @@ items:
         - "executeas:player msg console Hi"
         - "msg %player% Hi"
 
+  command-sword:
+    name: "&e&lCommand Sword &7(Example Item)"
+    item: IRON_SWORD
+    lore:
+      - "&7Executes a command."
+    enchantments:
+      - "DAMAGE_ALL:5"
+    # You can add flags to change the item data as well.
+    itemflags:
+      - "HIDE_ENCHANTS"
+      - "HIDE_ATTRIBUTES"
+      - "HIDE_UNBREAKABLE"
+    # You can also make items unbreakable.
+    unbreakable: true
+    commands:
+      - "say Hello, %player%!"
+    consume: false
+    # You can add sounds too
+    sound: "ENTITY_VILLAGER_YES"
+
   instant-death:
     name: "&c&lInstant Death &7(Example Item)"
     item: SPIDER_EYE

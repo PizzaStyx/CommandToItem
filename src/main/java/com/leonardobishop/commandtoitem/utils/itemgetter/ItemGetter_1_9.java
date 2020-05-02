@@ -1,5 +1,9 @@
 package com.leonardobishop.commandtoitem.utils.itemgetter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -10,21 +14,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
-
-public class ItemGetter_Late_1_8 implements ItemGetter {
+public class ItemGetter_1_9 implements ItemGetter {
     /*
-    item reader for 1_8_R0_3 + ONLY
-
+    item reader for 1_9_R0_1 to 1_12_R0_1
+    
     supporting:
      - name
      - material (+ DATA)
      - lore
      - enchantments (NOT NamespacedKey)
      - itemflags
+     - unbreakable
      */
     @Override
     public ItemStack getItem(String path, FileConfiguration config, JavaPlugin plugin) {
@@ -32,6 +32,7 @@ public class ItemGetter_Late_1_8 implements ItemGetter {
         String cType = config.getString(path + ".item", path + ".item");
         List<String> cLore = config.getStringList(path + ".lore");
         List<String> cItemFlags = config.getStringList(path + ".itemflags");
+        boolean unbreakable = config.getBoolean(path + ".unbreakable", false);
 
         String name;
         Material type = null;
@@ -72,6 +73,7 @@ public class ItemGetter_Late_1_8 implements ItemGetter {
         ItemMeta ism = is.getItemMeta();
         ism.setLore(lore);
         ism.setDisplayName(name);
+        ism.setUnbreakable(unbreakable);
 
         // item flags
         if (config.isSet(path + ".itemflags")) {
@@ -119,4 +121,5 @@ public class ItemGetter_Late_1_8 implements ItemGetter {
         }
         return is;
     }
+	
 }

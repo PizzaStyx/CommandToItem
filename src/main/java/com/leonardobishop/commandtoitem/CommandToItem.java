@@ -7,6 +7,7 @@ import com.leonardobishop.commandtoitem.events.UseItem;
 import com.leonardobishop.commandtoitem.utils.itemgetter.ItemGetter;
 import com.leonardobishop.commandtoitem.utils.itemgetter.ItemGetterLatest;
 import com.leonardobishop.commandtoitem.utils.itemgetter.ItemGetter_1_13;
+import com.leonardobishop.commandtoitem.utils.itemgetter.ItemGetter_1_9;
 import com.leonardobishop.commandtoitem.utils.itemgetter.ItemGetter_Late_1_8;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -97,8 +98,6 @@ public class CommandToItem extends JavaPlugin {
 
             items.add(new Item(s.replace(" ", "_"), is, commands, messages, consume, cooldown, sound));
         }
-
-
     }
 
     public List<Item> getItems() {
@@ -116,9 +115,10 @@ public class CommandToItem extends JavaPlugin {
         }
 
         getLogger().info("Your server is running version " + version + ".");
-        if (version.startsWith("v1_7") || version.startsWith("v1_8") || version.startsWith("v1_9")
-                || version.startsWith("v1_10") || version.startsWith("v1_11") || version.startsWith("v1_12")) {
+        if (version.startsWith("v1_7") || version.startsWith("v1_8")) {
             itemGetter = new ItemGetter_Late_1_8();
+        } else if (version.startsWith("v1_9") || version.startsWith("v1_10") || version.startsWith("v1_11") || version.startsWith("v1_12")) {
+        	itemGetter = new ItemGetter_1_9();
         } else if (version.startsWith("v1_13")) {
             itemGetter = new ItemGetter_1_13();
         } else {
